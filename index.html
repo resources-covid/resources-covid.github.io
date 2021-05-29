@@ -1,0 +1,264 @@
+<!doctype HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<style>
+		.ar,.ca {
+			text-align:center;
+			/*content:'';*/
+			display:inline-block;
+			/*width:99.5%; generates an extra transparent line */
+		}
+		button {
+			padding: 1.2em 1em 0;
+			box-shadow:0 0 5px;
+			margin:/*1em*/1%;
+			border-radius:0.25em;
+			font-size:0.875;
+			word-wrap: break-word;
+			max-width: 100%;
+		}
+		.ar:hover {
+			background-color: #e0ffde;
+		}
+		.ca:hover {
+			background-color: #f5beba;
+		}
+		#stt,#dist {
+			width: 30%;
+			overflow: hidden;
+			height: 43px;
+			border:none;
+			border-left: 2px ridge #ccc;
+			border-right: 2px ridge #ccc;
+			border-radius: 8px;
+			margin-right: 4px;
+		}
+		.flex-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+		.lis {
+			text-align:center;
+			width:60%;
+			margin-left:20%;
+			margin-top:0.5%;
+			position:relative;
+			display:block;
+			padding: 8px;
+			border-radius: 4px;
+			white-space: normal;
+			word-wrap: break-word;
+			font-size: 0.875em;
+			box-shadow:2px 1px 5px grey;
+			background-color:#ff7a7a; 
+			cursor: pointer;
+			color: white;
+		}
+		.lis1 {
+			border-radius: 4px;
+			margin-top:0.5%;
+			position:relative;
+			padding: 8px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			font-size: 0.875em;
+			box-shadow:2px 1px 5px grey;
+			width:30%; 
+			color: white; 
+			display: inline;
+			float:left;
+		}
+		.lis1:hover {
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+		<div class="flex-container w3-bar">
+			<button class="ar w3-btn w3-border w3-border-green w3-green w3-round-large w3-small w3-ripple" id="1" onclick=area(1)>PAN INDIA</button>
+			<button class=" ar w3-btn w3-border w3-border-green w3-round-large w3-small w3-ripple" id="2" onclick=area(2)>STATE LEVEL</button>
+			<button class="ar w3-btn w3-border w3-border-green w3-round-large w3-small w3-ripple" id="3" onclick=area(3)>DISTRICT LEVEL</button>
+		</div>
+		<div class="flex-container">
+			<select id="stt" style="display: none; float: left" onchange=getdist(this.value) placeholder="State...">
+				<option value="" disabled selected hidden>State...</option>
+				<option value='Andaman and Nicobar Islands'>Andaman and Nicobar Islands</option>
+				<option value='Andhra Pradesh'>Andhra Pradesh</option>
+				<option value='Arunachal Pradesh'>Arunachal Pradesh</option>
+				<option value='Assam'>Assam</option>
+				<option value='Bihar'>Bihar</option>
+				<option value='Chandigarh'>Chandigarh</option>
+				<option value='Chhattisgarh'>Chhattisgarh</option>
+				<option value='Dadra and Nagar Haveli'>Dadra and Nagar Haveli</option>
+				<option value='Daman and Diu'>Daman and Diu</option>
+				<option value='Delhi'>Delhi</option>
+				<option value='Goa'>Goa</option>
+				<option value='Gujarat'>Gujarat</option>
+				<option value='Haryana'>Haryana</option>
+				<option value='Himachal Pradesh'>Himachal Pradesh</option>
+				<option value='Jammu and Kashmir'>Jammu and Kashmir</option>
+				<option value='Jharkhand'>Jharkhand</option>
+				<option value='Karnataka'>Karnataka</option>
+				<option value='Kerala'>Kerala</option>
+				<option value='Ladakh'>Ladakh</option>
+				<option value='Lakshadweep'>Lakshadweep</option>
+				<option value='Madhya Pradesh'>Madhya Pradesh</option>
+				<option value='Maharashtra'>Maharashtra</option>
+				<option value='Manipur'>Manipur</option>
+				<option value='Meghalaya'>Meghalaya</option>
+				<option value='Mizoram'>Mizoram</option>
+				<option value='Nagaland'>Nagaland</option>
+				<option value='Odisha'>Odisha</option>
+				<option value='Puducherry'>Puducherry</option>
+				<option value='Punjab'>Punjab</option>
+				<option value='Rajasthan'>Rajasthan</option>
+				<option value='Sikkim'>Sikkim</option>
+				<option value='Tamil Nadu'>Tamil Nadu</option>
+				<option value='Telangana'>Telangana</option>
+				<option value='Tripura'>Tripura</option>
+				<option value='Uttar Pradesh'>Uttar Pradesh</option>
+				<option value='Uttarakhand'>Uttarakhand</option>
+				<option value='West Bengal'>West Bengal</option>
+			</select>
+			<select id="dist" style="display: none; float: left">
+				<option value="" onclick=clearin() disabled selected hidden>District...</option>
+			</select>
+		</div>
+		<div class="flex-container" style="margin-top: 5%">
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c1" onclick=finale("c1","Beds")>BEDS</button>
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c2" onclick=finale("c2","Oxygen")>OXYGEN</button>
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c3" onclick=finale("c3","Plasma")>PLASMA</button>
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c4" onclick=finale("c4","Home&nbsp;ICU")>HOME ICU</button>
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c5" onclick=finale("c5","Medicines")>MEDICINES</button>
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c6" onclick=finale("c6","NGOs")>NGO</button>
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c7" onclick=finale("c7","Ambulance")>AMBULANCE</button>
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c8" onclick=finale("c8","All%20Information")>ALL INFORMATION</button>
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c9" onclick=finale("c9","Telegram%20Group")>TELEGRAM GROUP</button>
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c10" onclick=finale("c10","Whatsapp%20Group")>WHATSAPP GROUP</button>
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c11" onclick=finale("c11","Testing")>TESTING</button>
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c12" onclick=finale("c12","DoctorTeleconsult")>TELE-CONSULTATION</button>
+		</div>
+		<div class="w3-panel w3-card-4 w3-blue w3-border w3-border-sky w3-round" style="text-align:center;width:70%;margin-left:15%"><strong class="w3-text-white" style="text-shadow:2px 1px 2px #444"><b> LIST </b></strong></div>
+		<div class="listi">
+		</div>
+		<br><br>
+		<div style="text-align:center;background-image:linear-gradient(to bottom right,white,#fac8f1);width:80%;margin-left:10%"><h4 style="color:brown"><b>DISCLAIMER : </b></h4><p style="color:#002663"><b>we are just mediating information and are no way responsible for what is shared. Share and access at your own risk. In case of any purchases, beware of payment scams.</b></p></div>
+	<script>
+		/*$("#stt").on("tap",function(){
+										getdist($(this).val());});*/
+		$("#stt").change();
+		var ar=1;
+		function area(a) {
+			ar=a;
+			clearin();
+			$("#stt").css("display","none");
+			$("#dist").css("display","none");
+			/*$("#stt").removeAttr("onclick");
+			$("#dist").append("<option value='' disabled selected hidden>District...</option>");*/
+			$(".ar").removeClass("w3-green");
+			$("#"+a).addClass("w3-green");
+			
+			if(a==2) {
+				$("#stt").css("display","block");
+			}
+			
+			if(a==3) {
+				$("#stt").css("display","inline");
+				$("#dist").css("display","inline");
+				/*$("#stt").attr("onclick","getdist(this.value)");
+				$("#stt").click();*/
+			}
+		}
+		
+		function getdist(s) {
+			$("#dist").empty();
+			clearin();
+			$("#dist").append("<option value='' disabled selected hidden>District...</option>");
+			$.get("dist_list.php",{st : s},function(data){
+															arr=JSON.parse(data);
+															console.log(data);
+															for(i in arr) {
+																$("#dist").append("<option value="+arr[i]+">"+arr[i]+"</option>");
+															}
+														});
+		}
+		
+		function clearin() {
+			$(".listi").empty();
+			$(".ca").removeClass("w3-red");
+		}
+		
+		function finale(n,cat){
+		
+			var stat,dis;
+			var chk=0;
+			if (ar==1){
+				stat="Pan%20India";
+				dis="All";
+				chk=1;
+			}
+			else if(ar==2){
+				stat=$("#stt option:selected").val();
+				if(stat!="") {
+					chk=1;
+				}
+				dis="All";
+			}
+			else if(ar==3){
+				stat=$("#stt option:selected").val();
+				dis=$("#dist option:selected").val();
+				if(stat!="" && dis!="") {
+					chk=1;
+				}
+			}
+			if(chk==1)
+			{
+				$(".listi").empty();
+				$(".ca").removeClass("w3-red");
+				$("#"+n).addClass("w3-red");
+				var xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange=function() {
+					if (this.readyState==4 && this.status==200) {
+						$(".listi").empty();
+						if (this.responseText) {
+							l=JSON.parse(this.responseText);
+							for(i in l) {
+								/*console.log(i);
+								console.log(l[i]);*/
+								if (l[i].search("http")!=-1) {
+									$(".listi").append("<div class='lis w3-hover-red'><a href="+l[i]+" target='_blank'><b>"+i.split("!")[0]+"</b></a></div>");
+								}
+								else {
+									$(".listi").append("<div class='lis1 w3-hover-orange' style='background-color:#edbf82;margin-left:20%'><b>"+i.split("!")[0]+"</b></div><div class='lis1 w3-hover-orange' style='background-color:#f5b45d'><b>"+l[i]+"</b></div>");
+									$(".listi").append("<div style='clear:both'></div>");
+								}
+								/*$(".lis:odd").css("background-image","linear-gradient(to bottom right,white, #e0d6ff)");
+								$(".lis:even").css("background-image","linear-gradient(to bottom right, white, #dcdde3)");*/
+							}
+						}
+						else {
+							$(".listi").append("<h3 style='text-align:center;color:red'>Sorry, No Data Available  <i class='fa fa-close' style='font-size:48px;color:red;'></i></h3>");
+						}
+					}
+					else {
+						$(".listi").append("<i class='fa fa-spinner fa-spin' style='font-size: 50px; margin-left:44%'></i>");
+					}
+				}
+				xmlhttp.open("GET","backend.php?s="+stat+"&d="+dis+"&c="+cat,true);
+				/*xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");*/
+				xmlhttp.send();
+			}
+		}
+	</script>
+</body>
+</html>
+		
