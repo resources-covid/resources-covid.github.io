@@ -46,9 +46,9 @@
 		}
 		.lis {
 			text-align:center;
-			width:60%;
-			margin-left:20%;
-			margin-top:0.5%;
+			width:75%;
+			margin-left:12.5%;
+			margin-top:0.7%;
 			position:relative;
 			display:block;
 			padding: 8px;
@@ -62,8 +62,9 @@
 			color: white;
 		}
 		.lis1 {
+			text-align:center;
 			border-radius: 4px;
-			margin-top:0.5%;
+			margin-top:0.7%;
 			position:relative;
 			padding: 8px;
 			overflow: hidden;
@@ -71,13 +72,11 @@
 			white-space: nowrap;
 			font-size: 0.875em;
 			box-shadow:2px 1px 5px grey;
-			width:30%; 
+			width:37.5%; 
 			color: white; 
+			cursor: pointer;
 			display: inline;
 			float:left;
-		}
-		.lis1:hover {
-			color: white;
 		}
 	</style>
 </head>
@@ -105,7 +104,7 @@
 				<option value='Gujarat'>Gujarat</option>
 				<option value='Haryana'>Haryana</option>
 				<option value='Himachal Pradesh'>Himachal Pradesh</option>
-				<option value='Jammu and Kashmir'>Jammu and Kashmir</option>
+				<option value='Jammu %26 Kashmir'>Jammu &amp; Kashmir</option>
 				<option value='Jharkhand'>Jharkhand</option>
 				<option value='Karnataka'>Karnataka</option>
 				<option value='Kerala'>Kerala</option>
@@ -130,14 +129,14 @@
 				<option value='West Bengal'>West Bengal</option>
 			</select>
 			<select id="dist" style="display: none; float: left">
-				<option value="" onclick=clearin() disabled selected hidden>District...</option>
+				<option value="" onchange=clearin() disabled selected hidden>District...</option>
 			</select>
 		</div>
 		<div class="flex-container" style="margin-top: 5%">
 			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c1" onclick=finale("c1","Beds")>BEDS</button>
 			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c2" onclick=finale("c2","Oxygen")>OXYGEN</button>
 			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c3" onclick=finale("c3","Plasma")>PLASMA</button>
-			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c4" onclick=finale("c4","Home&nbsp;ICU")>HOME ICU</button>
+			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c4" onclick=finale("c4","Home%20ICU")>HOME ICU</button>
 			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c5" onclick=finale("c5","Medicines")>MEDICINES</button>
 			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c6" onclick=finale("c6","NGOs")>NGO</button>
 			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c7" onclick=finale("c7","Ambulance")>AMBULANCE</button>
@@ -147,11 +146,11 @@
 			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c11" onclick=finale("c11","Testing")>TESTING</button>
 			<button class="ca w3-btn w3-border w3-border-red w3-round w3-small w3-ripple" id="c12" onclick=finale("c12","DoctorTeleconsult")>TELE-CONSULTATION</button>
 		</div>
-		<div class="w3-panel w3-card-4 w3-blue w3-border w3-border-sky w3-round" style="text-align:center;width:70%;margin-left:15%"><strong class="w3-text-white" style="text-shadow:2px 1px 2px #444"><b> LIST </b></strong></div>
+		<div class="w3-panel w3-card-4 w3-blue w3-border w3-border-sky w3-round" style="text-align:center;width:80%;margin-left:10%"><strong class="w3-text-white" style="text-shadow:2px 1px 2px #444"><b> LIST </b></strong></div>
 		<div class="listi">
 		</div>
 		<br><br>
-		<div style="text-align:center;background-image:linear-gradient(to bottom right,white,#fac8f1);width:80%;margin-left:10%"><h4 style="color:brown"><b>DISCLAIMER : </b></h4><p style="color:#002663"><b>we are just mediating information and are no way responsible for what is shared. Share and access at your own risk. In case of any purchases, beware of payment scams.</b></p></div>
+		<div style="text-align:center;background-image:linear-gradient(to bottom right,white,#fae5ca);width:80%;margin-left:10%"><h4 style="color:brown">DISCLAIMER : </h4><p style="color:#c9780e">we are just mediating information and are no way responsible for what is shared. Share and access at your own risk. In case of any purchases, beware of payment scams.</p></div>
 	<script>
 		/*$("#stt").on("tap",function(){
 										getdist($(this).val());});*/
@@ -198,11 +197,11 @@
 		}
 		
 		function finale(n,cat){
-		
+
 			var stat,dis;
 			var chk=0;
 			if (ar==1){
-				stat="Pan%20India";
+				stat="Pan India";
 				dis="All";
 				chk=1;
 			}
@@ -220,6 +219,7 @@
 					chk=1;
 				}
 			}
+			
 			if(chk==1)
 			{
 				$(".listi").empty();
@@ -238,7 +238,7 @@
 									$(".listi").append("<div class='lis w3-hover-red'><a href="+l[i]+" target='_blank'><b>"+i.split("!")[0]+"</b></a></div>");
 								}
 								else {
-									$(".listi").append("<div class='lis1 w3-hover-orange' style='background-color:#edbf82;margin-left:20%'><b>"+i.split("!")[0]+"</b></div><div class='lis1 w3-hover-orange' style='background-color:#f5b45d'><b>"+l[i]+"</b></div>");
+									$(".listi").append("<div class='lis1 w3-hover-orange' style='background-color:#edbf82;margin-left:12.5%'><b>"+i.split("!")[0]+"</b></div><div class='lis1 w3-hover-orange' style='background-color:#f5b45d'><b>"+l[i]+"</b></div>");
 									$(".listi").append("<div style='clear:both'></div>");
 								}
 								/*$(".lis:odd").css("background-image","linear-gradient(to bottom right,white, #e0d6ff)");
@@ -246,15 +246,16 @@
 							}
 						}
 						else {
-							$(".listi").append("<h3 style='text-align:center;color:red'>Sorry, No Data Available  <i class='fa fa-close' style='font-size:48px;color:red;'></i></h3>");
+							$(".listi").append("<h3 style='text-align:center;color:red'>Sorry, No Data Available  <i class='fa fa-close' style='font-size:25px;color:red;'></i></h3>");
 						}
 					}
 					else {
-						$(".listi").append("<i class='fa fa-spinner fa-spin' style='font-size: 50px; margin-left:44%'></i>");
+						$(".listi").empty();
+						$(".listi").append("<i class='fa fa-spinner fa-spin' style='font-size: 250%; margin-left:45%'></i>");
 					}
 				}
 				xmlhttp.open("GET","backend.php?s="+stat+"&d="+dis+"&c="+cat,true);
-				/*xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");*/
+				/*xmlhttp.setRequestHeader("Content-type", "text/plain");*/
 				xmlhttp.send();
 			}
 		}
